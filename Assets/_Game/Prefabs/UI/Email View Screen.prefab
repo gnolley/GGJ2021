@@ -802,7 +802,7 @@ GameObject:
   - component: {fileID: 4878983368177408533}
   - component: {fileID: 7162789969344142837}
   m_Layer: 0
-  m_Name: Title
+  m_Name: Author Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -953,6 +953,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2193260180921518094}
+  - component: {fileID: 1660632111447176243}
   m_Layer: 5
   m_Name: Email View Screen
   m_TagString: Untagged
@@ -982,6 +983,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1660632111447176243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4572522381850020188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c5abcdc4988c54baad6c2d7dc194ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: {fileID: 5677891011946796895}
+  emailAddress: {fileID: 3274964412849981412}
+  authorName: {fileID: 4878983368177408533}
+  body: {fileID: 4628374625350228129}
+  authorPortrait: {fileID: 4551730205814986359}
 --- !u!1 &5382616222614718046
 GameObject:
   m_ObjectHideFlags: 0
