@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 using EmailSystem.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace EmailSystem {
 
-	/// <summary>
-	///
-	/// </summary>
 	public class EmailController : MonoBehaviour {
 
 		[SerializeField] private EmailContentView emailContentView;
 		[SerializeField] private EmailTracker emailTracker;
 		[SerializeField] private EmailGenerator emailGenerator;
 		[SerializeField] private UIScreenManager uIScreenManager;
+		[SerializeField] private ResponseController responseController;
+		[SerializeField] private ResponseGenerator responseGenerator;
 
 		[SerializeField] private int startingEmail = 3;
 		[SerializeField] private float infoToInquryFactor = 0.6f, spamEmailChance;
@@ -47,7 +47,7 @@ namespace EmailSystem {
 		public void SpawnRandomEmail() {
 			if(emailTracker.TotalEmailCount >= maxEmails) return;
 
-			float spam = Random.Range(0f, 1f);
+			float spam = UnityEngine.Random.Range(0f, 1f);
 			if(spam <= spamEmailChance) {
 				AddNewSpamEmail();
 				return;
@@ -75,8 +75,66 @@ namespace EmailSystem {
 
 		public void OnEmailPress(Email email) {
 			emailContentView.SetContents(email);
+			GenerateResponses(email);
 			uIScreenManager.GoToScreen(UIScreenManager.UIScreens.EmailScreen);
 			email.IsEmailRead = true;
+		}
+
+		private void GenerateResponses(Email email) {
+			EmailInfo[] info = null;
+
+
+			switch (email.EmailType) {
+				case EmailType.Info:
+					if (email is InfoEmail) info = GenerateInfoResponses(email as InfoEmail);
+					break;
+				case EmailType.Inquiry:
+					if(email is InquiryEmail) info = GenerateInquiryResponses(email as InquiryEmail);
+					break;
+				case EmailType.Response:
+					if(email is SpamEmail) info = GenerateSpamResponses(email as SpamEmail);
+					break;
+				case EmailType.Spam:
+					if(email is ResponseEmail) info = GenerateResponseResponses(email as ResponseEmail);
+					break;
+			}
+
+			if(info == null) throw new System.ArgumentException("The email could not be parsed " +
+				"as InfoEmail, InquiryEmail, SpamEmail, or ResponseEmail");
+
+			responseController.PopulateResponses(info);
+		}
+
+		EmailInfo[] GenerateInfoResponses(InfoEmail email) {
+			EmailInfo[] info = new EmailInfo[ResponseController.RESPONSE_AMOUNT];
+			for (int i = 0; i < ResponseController.RESPONSE_AMOUNT; ++i) {
+				info[i] = responseGenerator.GenerateInfoEmailResponse();
+			}
+			return info;
+		}
+		EmailInfo[] GenerateInquiryResponses(InquiryEmail email) {
+			int realInfo = Random.Range(0, ResponseController.RESPONSE_AMOUNT);
+
+			EmailInfo[] info = new EmailInfo[ResponseController.RESPONSE_AMOUNT];
+			for (int i = 0; i < ResponseController.RESPONSE_AMOUNT; ++i) {
+				if(i == realInfo) info[i] = email.InfoToAquire;
+				else info[i] = responseGenerator.GenerateInquiryEmailResponse();
+			}
+			return info;
+		}
+		EmailInfo[] GenerateSpamResponses(SpamEmail email) {
+			EmailInfo[] info = new EmailInfo[ResponseController.RESPONSE_AMOUNT];
+			for (int i = 0; i < ResponseController.RESPONSE_AMOUNT; ++i) {
+				info[i] = responseGenerator.GenerateSpamEmailResponse();
+			}
+			return info;
+		}
+		EmailInfo[] GenerateResponseResponses(ResponseEmail email) {
+			EmailInfo[] info = new EmailInfo[ResponseController.RESPONSE_AMOUNT];
+			for (int i = 0; i < ResponseController.RESPONSE_AMOUNT; ++i) {
+				info[i] = responseGenerator.GenerateResponseEmailResponse();
+			}
+			return info;
 		}
 
 		public void OnTrashPress(Email email) {
