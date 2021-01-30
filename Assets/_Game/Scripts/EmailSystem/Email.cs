@@ -11,6 +11,15 @@
 		private string bodyText;
 		private bool isEmailRead;
 		private EmailType emailType;
+		private EmailInfo emailInfo;
+
+
+
+		public EmailInfo MyProperty {
+			get { return emailInfo; }
+			set { emailInfo = value; }
+		}
+
 
 		public Author Author {
 			get { return author; }
