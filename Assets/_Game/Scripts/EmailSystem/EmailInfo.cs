@@ -7,6 +7,10 @@ namespace EmailSystem {
 	public class EmailInfo : IComparable {
 		string infoText;
 
+		public EmailInfo(string infoText) {
+			this.infoText = infoText;
+		}
+
 		public string InfoText {
 			get { return infoText; }
 			set { InfoText = value; }
