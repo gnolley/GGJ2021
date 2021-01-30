@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace EmailSystem {
 	public class ResponseEmail : Email {
-		private InquiryEmail incorrentResponse;
+		private Email incorrentResponse;
 
-		public InquiryEmail IncorrentResponse {
+		public Email IncorrentResponse {
 			get { return incorrentResponse; }
 			set { incorrentResponse = value; }
 		}
@@ -16,7 +16,7 @@ namespace EmailSystem {
 				string title,
 				string subject,
 				string bodyText,
-				InquiryEmail incorrentResponse) : base(author,
+				Email incorrentResponse) : base(author,
 							title,
 							subject,
 							bodyText,
