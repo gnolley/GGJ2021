@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 140828498}
   - component: {fileID: 140828497}
   - component: {fileID: 140828499}
+  - component: {fileID: 140828500}
   m_Layer: 0
   m_Name: Email System
   m_TagString: Untagged
@@ -219,6 +220,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f735a5dc375330749bc55e244939cf31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &140828500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140828494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 124b3f3cac42f2548b88c8a32ff3e954, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uploadRequirement: 1
+  uploadingView: {fileID: 333627357}
+  emailController: {fileID: 140828495}
 --- !u!1 &224278638
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,6 +312,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 244534900859060958, guid: f5d463d9ad5482343b68008d9ec38ebb, type: 3}
+      propertyPath: responseController
+      value: 
+      objectReference: {fileID: 1410491220}
     - target: {fileID: 339776575257238071, guid: f5d463d9ad5482343b68008d9ec38ebb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -660,6 +680,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3614018099364406444, guid: f5d463d9ad5482343b68008d9ec38ebb, type: 3}
+      propertyPath: responseController
+      value: 
+      objectReference: {fileID: 1410491220}
     - target: {fileID: 3998656447832588236, guid: f5d463d9ad5482343b68008d9ec38ebb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -764,6 +788,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5066835504612927361, guid: f5d463d9ad5482343b68008d9ec38ebb, type: 3}
+      propertyPath: responseController
+      value: 
+      objectReference: {fileID: 1410491220}
     - target: {fileID: 5162187348070151525, guid: f5d463d9ad5482343b68008d9ec38ebb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -944,6 +972,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6436299799782470680, guid: f5d463d9ad5482343b68008d9ec38ebb, type: 3}
+      propertyPath: uploader
+      value: 
+      objectReference: {fileID: 140828500}
     - target: {fileID: 6646334023704511399, guid: f5d463d9ad5482343b68008d9ec38ebb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1412,6 +1444,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74c5abcdc4988c54baad6c2d7dc194ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &333627357 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 468459648396827294, guid: f5d463d9ad5482343b68008d9ec38ebb, type: 3}
+  m_PrefabInstance: {fileID: 333627354}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c14eea407e2501043ac727b4613a63fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &632907416

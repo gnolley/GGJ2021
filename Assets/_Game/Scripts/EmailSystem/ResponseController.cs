@@ -6,6 +6,7 @@ namespace EmailSystem.UI {
 	public class ResponseController : MonoBehaviour {
 
 		[SerializeField] private List<ResponseView> responseViews = new List<ResponseView>(3);
+		[SerializeField] private EmailUploader uploader;
 		public const int RESPONSE_AMOUNT = 3;
 
 		/// <summary>
@@ -16,6 +17,11 @@ namespace EmailSystem.UI {
 			for(int i=0; i< RESPONSE_AMOUNT; ++i) {
 				responseViews[i].SetResponseInfo(responses[i]);
 			}
+		}
+
+
+		public void OnResponsePress(EmailInfo responseInfo) {
+			uploader.ResponseChosen(responseInfo);
 		}
 	}
 }

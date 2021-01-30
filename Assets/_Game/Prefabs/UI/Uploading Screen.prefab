@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 7958590726756060287}
   - component: {fileID: 3922942994992124581}
   m_Layer: 5
-  m_Name: Sending Screen
+  m_Name: Uploading Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,6 +242,7 @@ MonoBehaviour:
   loadingBar: {fileID: 6305635699996421952}
   loadingFill: {fileID: 4547501055912245601}
   fadeInTime: 0.25
+  loadingIconSpeed: 500
   canvasGroup: {fileID: 8866002884156713444}
 --- !u!1 &1381856215352822686
 GameObject:

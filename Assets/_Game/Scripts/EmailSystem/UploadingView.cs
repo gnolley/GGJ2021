@@ -8,8 +8,12 @@ namespace EmailSystem.UI {
 	public class UploadingView : MonoBehaviour {
 
 		[SerializeField] private RectTransform loadingIcon, loadingBar, loadingFill;
-		[SerializeField] private float fadeInTime = 0.25f;
+		[SerializeField] private float fadeInTime = 0.25f, loadingIconSpeed = 5f;
 		[SerializeField] private CanvasGroup canvasGroup;
+
+		private void Update() {
+			loadingIcon.rotation *= Quaternion.Euler(0f, 0f, loadingIconSpeed * Time.deltaTime);
+		}
 
 		public void StartLoading() {
 			gameObject.SetActive(true);
@@ -22,6 +26,7 @@ namespace EmailSystem.UI {
 		/// Sets the loading bar to a value as a 0-1 percentage
 		/// </summary>
 		public void UpdateLoadingProgress(float valueAsPercentage) {
+			valueAsPercentage = Mathf.Clamp01(valueAsPercentage);
 			float newWidth = Mathf.Lerp(0f, loadingBar.rect.width, valueAsPercentage);
 			loadingFill.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newWidth);
 		}
