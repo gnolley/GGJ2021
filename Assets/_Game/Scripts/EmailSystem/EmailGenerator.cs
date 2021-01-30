@@ -4,6 +4,11 @@ namespace EmailSystem {
 
 	public class EmailGenerator : MonoBehaviour {
 
+		[SerializeField] private Sprite defaultPortrait;
+		private void Awake() {
+			DEFAULT_AUTHOR = new Author(defaultPortrait, "Jane Doe", "123Evergreen@Terrace.com");
+		}
+
 		public Email GenerateInfoEmail() { 
 			return new InfoEmail(DEFAULT_AUTHOR, "Info Email", "Some more Info", DEFAULT_BODY, new EmailInfo("10:30")); 
 		}
@@ -18,7 +23,7 @@ namespace EmailSystem {
 		}
 
 
-		Author DEFAULT_AUTHOR = new Author();
+		Author DEFAULT_AUTHOR;
 
 		const string DEFAULT_BODY = 
 			"Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +

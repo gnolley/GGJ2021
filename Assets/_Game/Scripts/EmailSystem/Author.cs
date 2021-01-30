@@ -7,15 +7,21 @@ namespace EmailSystem {
 	/// </summary>
 	public class Author {
 
-		private Sprite portait = null;
+		public Author(Sprite portrait, string name, string address) {
+			this.portrait = portrait;
+			this.name = name;
+			this.address = address;
+		}
+
+		private Sprite portrait = null;
 
 		private string name = "";
 
 		private string address = "";
 
 		public Sprite Portrait {
-			get { return portait; }
-			set { portait = value; }
+			get { return portrait; }
+			set { portrait = value; }
 		}
 
 		public string Name {
