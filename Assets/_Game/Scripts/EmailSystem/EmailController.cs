@@ -11,6 +11,7 @@ namespace EmailSystem {
 		[SerializeField] private EmailContentView emailContentView;
 		[SerializeField] private EmailTracker emailTracker;
 		[SerializeField] private EmailGenerator emailGenerator;
+		[SerializeField] private UIScreenManager uIScreenManager;
 
 		[SerializeField] private int startingEmail = 3;
 
@@ -21,13 +22,14 @@ namespace EmailSystem {
 		private void Init() { 
 		
 			for(int i=0; i<startingEmail; ++i) {
-				emailTracker.AddEmail(emailGenerator.GenerateInfoEmail());
+				emailTracker.AddEmail(emailGenerator.GenerateInfoEmail(), OnEmailPress);
 			}
 
 		}
 
 		public void OnEmailPress(Email email) {
 			emailContentView.SetContents(email);
+			uIScreenManager.GoToScreen(UIScreenManager.UIScreens.EmailScreen);
 		}
 
 		public void OnTrashPress(Email email) {
