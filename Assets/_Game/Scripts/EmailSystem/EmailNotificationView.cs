@@ -23,7 +23,10 @@ namespace EmailSystem.UI {
 		}
 
 		private void OnEnable() {
-			if(associatedEmail.IsEmailRead) SetAsRead();
+			if (associatedEmail != null) {
+				if (associatedEmail.IsEmailRead)
+					SetAsRead();
+			}
 		}
 
 		public void SetAsRead() {

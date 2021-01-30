@@ -159,6 +159,10 @@ MonoBehaviour:
   emailGenerator: {fileID: 140828498}
   uIScreenManager: {fileID: 1546762062}
   startingEmail: 3
+  infoToInquryFactor: 0.75
+  spamEmailChance: 0.2
+  newEmailEvery: 10
+  maxEmails: 10
 --- !u!4 &140828496
 Transform:
   m_ObjectHideFlags: 0
