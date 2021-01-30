@@ -1,25 +1,26 @@
 ﻿namespace EmailSystem {
 
-	/// <summary>
-	///
-	/// </summary>
 	public abstract class Email {
 
-		private Author author;
-		private string title;
-		private string subject;
-		private string bodyText;
-		private bool isEmailRead;
-		private EmailType emailType;
-		private EmailInfo emailInfo;
+		protected Author author;
+		protected string title;
+		protected string subject;
+		protected string bodyText;
+		protected bool isEmailRead;
+		protected EmailType emailType;
 
-
-
-		public EmailInfo MyProperty {
-			get { return emailInfo; }
-			set { emailInfo = value; }
+		public Email(
+				Author author,
+				string title,
+				string subject,
+				string bodyText,
+				EmailType emailType) {
+			this.author = author;
+			this.title = title;
+			this.subject = subject;
+			this.bodyText = bodyText;
+			this.emailType = emailType;
 		}
-
 
 		public Author Author {
 			get { return author; }
