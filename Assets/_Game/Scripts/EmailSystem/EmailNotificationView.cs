@@ -9,6 +9,7 @@ namespace EmailSystem.UI {
 	public class EmailNotificationView : MonoBehaviour {
 		[SerializeField] private TextMeshProUGUI title, subject;
 		[SerializeField] private Image portait;
+		[SerializeField] private Color readColor;
 
 		Email associatedEmail;
 		Action<Email> onPressCallback;
@@ -21,8 +22,13 @@ namespace EmailSystem.UI {
 			this.onPressCallback = onPressCallback;
 		}
 
-		public void SetAsRead() {
+		private void OnEnable() {
+			if(associatedEmail.IsEmailRead) SetAsRead();
+		}
 
+		public void SetAsRead() {
+			title.color = readColor;
+			subject.color = readColor;
 		}
 
 		public void OnPress() {

@@ -30,6 +30,7 @@ namespace EmailSystem {
 		public void OnEmailPress(Email email) {
 			emailContentView.SetContents(email);
 			uIScreenManager.GoToScreen(UIScreenManager.UIScreens.EmailScreen);
+			email.IsEmailRead = true;
 		}
 
 		public void OnTrashPress(Email email) {

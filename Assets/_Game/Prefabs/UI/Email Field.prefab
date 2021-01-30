@@ -224,6 +224,7 @@ MonoBehaviour:
   title: {fileID: 7741501145383705052}
   subject: {fileID: 2683972029709439415}
   portait: {fileID: 4646855079456269044}
+  readColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
 --- !u!114 &8437541243969516622
 MonoBehaviour:
   m_ObjectHideFlags: 0
