@@ -20,6 +20,11 @@ namespace SignalSystem.UI {
 		/// </summary>
 		/// <param name="level"></param>
 		public void SetSignalLevel(int level) {
+			if (level < 0 || level > 3) {
+				Debug.LogError($"Invalid signal level input!");
+				return;
+			}
+
 			switch (level) {
 				case 0:
 					SetSignalSprite(signal0);
