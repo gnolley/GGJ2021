@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7200492772540587431}
+  - component: {fileID: 2359924121893130969}
   m_Layer: 5
   m_Name: Time
   m_TagString: Untagged
@@ -36,6 +37,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 0}
   m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &2359924121893130969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993073095458351366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e20dae6edb42d242a2800b7bd062e64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeText: {fileID: 2675808682497830209}
 --- !u!1 &3708942559971282392
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,6 +60,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7360530554870471916}
   - component: {fileID: 2292925163909166496}
+  - component: {fileID: 7248988674840420270}
   m_Layer: 5
   m_Name: Wifi-Symbol
   m_TagString: Untagged
@@ -81,6 +96,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3708942559971282392}
   m_CullTransparentMesh: 0
+--- !u!114 &7248988674840420270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3708942559971282392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fef23db2411fbe449fef9d86fc0ecce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signalImage: {fileID: 8376196862963541662}
+  signal0: {fileID: 21300000, guid: 1799e34e522f3bd4a995c03d93b2c66f, type: 3}
+  signal1: {fileID: 21300000, guid: bbef08aa53efa4f498ae69b846986f72, type: 3}
+  signal2: {fileID: 21300000, guid: 97cfd94c0b465ea47bf8e8286348e541, type: 3}
+  signal3: {fileID: 21300000, guid: eb98d29c0fda1844683d661d4e6e731d, type: 3}
 --- !u!1 &5010750066215089483
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,8 +389,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: eb98d29c0fda1844683d661d4e6e731d, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
