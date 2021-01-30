@@ -12,6 +12,7 @@ namespace EmailSystem.UI {
 		[SerializeField] private CanvasGroup canvasGroup;
 
 		public void StartLoading() {
+			gameObject.SetActive(true);
 			StopCoroutine(nameof(FadeOut));
 			StopCoroutine(nameof(FadeIn));
 			StartCoroutine(nameof(FadeIn));
@@ -49,6 +50,7 @@ namespace EmailSystem.UI {
 				yield return null;
 			}
 			Fade(0f);
+			gameObject.SetActive(false);
 		}
 
 		private void Fade(float t) {

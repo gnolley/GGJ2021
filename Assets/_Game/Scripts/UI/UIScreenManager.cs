@@ -12,6 +12,14 @@ public class UIScreenManager : MonoBehaviour
 
 	float ScreenWidth => listScreen.rect.width;
 
+	/// <summary>
+	/// Set starting conditions of the UI
+	/// </summary>
+	private void Start() {
+		listScreen.gameObject.SetActive(true);
+		emailScreen.gameObject.SetActive(false);
+	}
+
 	public void GoToScreen(UIScreens screen) {
 		switch (screen) {
 			case UIScreens.ListScreen:
@@ -28,6 +36,9 @@ public class UIScreenManager : MonoBehaviour
 	}
 
 	private IEnumerator ToSecondScreen() {
+		listScreen.gameObject.SetActive(true);
+		emailScreen.gameObject.SetActive(true);
+
 		float t = 0;
 		while (t < animTime) {
 			Ease(t / animTime);
@@ -35,9 +46,13 @@ public class UIScreenManager : MonoBehaviour
 			yield return null;
 		}
 		Ease(1);
+		listScreen.gameObject.SetActive(false);
 	}
 
 	private IEnumerator ToFirstScreen() {
+		listScreen.gameObject.SetActive(true);
+		emailScreen.gameObject.SetActive(true);
+
 		float t = 0;
 		while (t < animTime) {
 			Ease(1 - (t / animTime));
@@ -45,6 +60,7 @@ public class UIScreenManager : MonoBehaviour
 			yield return null;
 		}
 		Ease(0);
+		emailScreen.gameObject.SetActive(false);
 	}
 
 	private void Ease(float t) {
