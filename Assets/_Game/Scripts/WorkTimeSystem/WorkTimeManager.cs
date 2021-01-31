@@ -11,6 +11,20 @@ namespace GameSystem.WorkTime {
 	/// </summary>
 	public class WorkTimeManager : MonoBehaviour {
 
+
+		#region Singleton
+		public static WorkTimeManager instance;
+
+		private void Awake() {
+			if (instance == null)
+				instance = this;
+			else {
+				Debug.LogError("There can only be one instance on WorkTimeManager");
+				Destroy(this);
+			}
+		}
+		#endregion Singleton
+
 		[SerializeField] private float workTime = 0;
 		[SerializeField] private WorkTimeView view;
 		[SerializeField] private float startTime = 9f, endTime = 17f, runTime = 60f;
@@ -53,9 +67,9 @@ namespace GameSystem.WorkTime {
 				CurrentHMS = GetHMS();
 
 				if(workTime >= END_WORK_TIME) {
-					EndDay();
 					workTime = END_WORK_TIME;
 					CurrentHMS = GetHMS();
+					EndDay();
 				}
 
 				yield return null;
