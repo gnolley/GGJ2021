@@ -787,8 +787,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa15a2ecc7607d4a8a02f18c9ae975d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infoCorrect: 10
-  inquiryCorrect: 25
+  infoCorrect: 20
+  inquiryCorrect: 35
   inquiryIncorrect: 5
   view: {fileID: 981430857}
   KPIDrainRate: 1.6
