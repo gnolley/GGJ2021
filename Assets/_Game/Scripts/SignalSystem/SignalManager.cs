@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace SignalSystem {
 
@@ -34,21 +35,52 @@ namespace SignalSystem {
 
 		#endregion Singleton
 
+		private const float Y_THRESHOLD = 0.12f;
+		private readonly Vector2 ROLL_RANGE = new Vector2(-0.4f, 0.4f);
+
+		private const float MAX_DISTANCE_THRESHOLD = 0.25f;
+
 		/// <summary>
 		/// The current signal strength [0,1]
 		/// </summary>
-		public float CurrentSignal { get; private set; } = 1;
+		public float CurrentSignalStrength { get; private set; } = 1;
 
-		// when to shift signal
-		// bounds
-		// relative position
+		public Vector2 CurrentSignalPosition { get; private set; }
+
+		public readonly ReturnEvent<Vector2> NewSignalChosenEvent = new ReturnEvent<Vector2>();
+
+		private void Start() {
+			ChooseNewSignalPosition();
+		}
+
+		private void OnDestroy() {
+			NewSignalChosenEvent?.RemoveAllListeners();
+		}
 
 		public void Reset() {
 			// reset variables
 		}
 
-		public void UpdateSignal(float someDirection) {
+		public void UpdateSignal(Vector2 finderPosition) {
+			float yStrength = Mathf.InverseLerp(0, Y_THRESHOLD, finderPosition.y);
+
+			float xDistance = Mathf.Abs(CurrentSignalPosition.x - finderPosition.x);
+			float xStrength = Mathf.InverseLerp(MAX_DISTANCE_THRESHOLD, 0, xDistance);
+
 			// check against current position
+			CurrentSignalStrength = yStrength * xStrength;
+
+			if (CurrentSignalStrength >= 0.9f) ChooseNewSignalPosition();
 		}
+
+		private void ChooseNewSignalPosition() {
+			CurrentSignalPosition = new Vector2(
+				Random.Range(ROLL_RANGE.x, ROLL_RANGE.y),
+				Y_THRESHOLD
+				);
+
+			NewSignalChosenEvent?.Invoke(CurrentSignalPosition);
+		}
+
 	}
 }
