@@ -38,6 +38,10 @@ namespace EmailSystem {
 			StartCoroutine(nameof(EmailTicker));
 		}
 
+		public void StopTicker() {
+			StopCoroutine(nameof(EmailTicker));
+		}
+
 		IEnumerator EmailTicker() {
 			while (true) {
 				yield return new WaitForSeconds(newEmailEvery);
