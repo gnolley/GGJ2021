@@ -16,7 +16,7 @@ namespace ScoreSystem {
 		}
 
 		public void DisplayScore() {
-			KPIScoreText.text = KPIManager.instance.KPI.ToString();
+			KPIScoreText.text = ((int)KPIManager.instance.KPI).ToString();
 			RatingText.text = RatingFunction.Evaluate(KPIManager.instance.KPI);
 		}
 
