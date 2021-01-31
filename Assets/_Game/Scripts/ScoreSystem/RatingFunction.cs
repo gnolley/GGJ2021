@@ -59,7 +59,7 @@
 					return Rating.S.ToString();
 
 				default:
-					return Rating.D.ToString();
+					return $"{Rating.D.ToString()}-";
 			}
 		}
 
