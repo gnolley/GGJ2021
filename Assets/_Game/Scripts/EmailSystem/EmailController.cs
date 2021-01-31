@@ -76,11 +76,11 @@ namespace EmailSystem {
 				
 		private void AddNewInfoEmail() => emailTracker.AddEmail(emailGenerator.GenerateInfoEmail(), OnEmailPress, OnTrashPress);
 		private void AddNewInquiryEmail(InfoEmail basedOn) {
-			emailTracker.AddEmail(emailGenerator.GenerateInquiryEmail(basedOn.AssociatedInfo), OnEmailPress, OnTrashPress);
+			emailTracker.AddEmail(emailGenerator.GenerateInquiryEmail(basedOn), OnEmailPress, OnTrashPress);
 			emailTracker.UntrackEmail(basedOn);
 		}
 		private void AddNewSpamEmail() => emailTracker.AddEmail(emailGenerator.GenerateSpamEmail(), OnEmailPress, OnTrashPress);
-		private void AddNewResponseEmail(Email basedOn) => emailTracker.AddEmail(emailGenerator.GenerateResponseEmail(basedOn), OnEmailPress, OnTrashPress);
+		private void AddNewResponseEmail(EmailInfo basedOn) => emailTracker.AddEmail(emailGenerator.GenerateResponseEmail(basedOn), OnEmailPress, OnTrashPress);
 
 
 		public void OnEmailPress(Email email) {
@@ -129,7 +129,7 @@ namespace EmailSystem {
 			EmailInfo[] info = new EmailInfo[ResponseController.RESPONSE_AMOUNT];
 			for (int i = 0; i < ResponseController.RESPONSE_AMOUNT; ++i) {
 				if(i == realInfo) info[i] = email.InfoToAquire;
-				else info[i] = responseGenerator.GenerateInquiryEmailResponse();
+				else info[i] = responseGenerator.GenerateInquiryEmailResponse(email.InfoToAquire.InfoType);
 			}
 			return info;
 		}
@@ -155,7 +155,7 @@ namespace EmailSystem {
 		public void OnResponseSent(EmailInfo info) {
 			if (emailTracker.CurrentEmail.EmailType == EmailType.Inquiry) {
 				if ((emailTracker.CurrentEmail as InquiryEmail).InfoToAquire.Equals(info)) OnCorrectInquiryResponse(); 
-				else OnIncorrectResponse(emailTracker.CurrentEmail);
+				else OnIncorrectResponse(info);
 			}
 			else if(emailTracker.CurrentEmail.EmailType == EmailType.Info) {
 				OnCorrectInfoResponse();
@@ -166,9 +166,9 @@ namespace EmailSystem {
 
 		public void OnCorrectInfoResponse() => KPIManager.instance.AddCorrectInfoResponse();
 		public void OnCorrectInquiryResponse() => KPIManager.instance.AddCorrentInquiryResponse();
-		public void OnIncorrectResponse(Email incorrectEmail) {
+		public void OnIncorrectResponse(EmailInfo incorrectInfo) {
 			KPIManager.instance.AddIncorrectInquiryResponse();
-			AddNewResponseEmail(incorrectEmail);
+			AddNewResponseEmail(incorrectInfo);
 		}
 	}
 }

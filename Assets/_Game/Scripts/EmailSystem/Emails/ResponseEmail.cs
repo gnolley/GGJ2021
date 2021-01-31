@@ -4,20 +4,18 @@ using UnityEngine;
 
 namespace EmailSystem {
 	public class ResponseEmail : Email {
-		private Email incorrentResponse;
+		private EmailInfo incorrentResponse;
 
-		public Email IncorrentResponse {
+		public EmailInfo IncorrentResponse {
 			get { return incorrentResponse; }
 			set { incorrentResponse = value; }
 		}
 
 
 		public ResponseEmail(Author author,
-				string title,
 				string subject,
 				string bodyText,
-				Email incorrentResponse) : base(author,
-							title,
+				EmailInfo incorrentResponse) : base(author,
 							subject,
 							bodyText,
 							EmailType.Response) {

@@ -10,7 +10,7 @@ namespace EmailSystem.UI {
 		[SerializeField] private Image authorPortrait;
 
 		public void SetContents(Email email) {
-			title.text = email.Title;
+			title.text = email.Subject;
 			emailAddress.text = email.Author.Address;
 			authorName.text = email.Author.Name;
 			body.text = email.BodyText;
