@@ -1,5 +1,7 @@
 ﻿using System;
 using UnityEngine;
+using GameSystem.WorkTime.UI;
+using UnityEngine.Events;
 
 namespace GameSystem.WorkTime {
 
@@ -8,12 +10,20 @@ namespace GameSystem.WorkTime {
 	/// </summary>
 	public class WorkTimeManager : MonoBehaviour {
 
-		/// <summary>
-		/// 8 hours in seconds
-		/// </summary>
-		private const float END_WORK_TIME = 28800;
-
 		[SerializeField] private float workTime = 0;
+		[SerializeField] private WorkTimeView view;
+		[SerializeField] private float startTime = 9f, endTime = 17f, runTime = 60f;
+		[SerializeField] private UnityEvent OnDayFinish;
+
+		private float END_WORK_TIME => hoursToSeconds(endTime);
+		private float START_WORK_TIME => hoursToSeconds(startTime);
+		private float TIME_SCALE => hoursToSeconds(endTime - startTime) / runTime;
+
+		private float secondsToHours(float seconds) => seconds / 3600f;
+		private float secondsToMinutes(float seconds) => seconds / 60f;
+
+		private float minutesToSeconds(float minutes) => minutes * 60f;
+		private float hoursToSeconds(float hours) => hours * 3600f;
 
 		public float NormalisedProgress => workTime / END_WORK_TIME;
 
@@ -26,10 +36,8 @@ namespace GameSystem.WorkTime {
 		}
 
 		public void StartTime() {
-			workTime = 0;
+			workTime = START_WORK_TIME;
 			CurrentHMS = GetHMS();
-
-			Time.timeScale = 3;
 
 			WorkStarted = true;
 		}
@@ -38,7 +46,7 @@ namespace GameSystem.WorkTime {
 
 			if (WorkStarted == false) return;
 
-			workTime += Time.deltaTime;
+			workTime += Time.deltaTime * TIME_SCALE;
 			CurrentHMS = GetHMS();
 		}
 
@@ -51,6 +59,7 @@ namespace GameSystem.WorkTime {
 			time.Second = (int)workTime - time.Minute * 60 - time.Hour * 3600;
 
 			CurrentHMS = time;
+			view.SetWorkTime(CurrentHMS);
 			return CurrentHMS;
 		}
 	}
@@ -60,5 +69,22 @@ namespace GameSystem.WorkTime {
 		public int Hour;
 		public int Minute;
 		public int Second;
+
+		public override string ToString() {
+			string builder = "";
+			if(Hour < 10) builder += "0";
+			builder += Hour.ToString();
+
+			builder += ":";
+
+			if(Minute < 10) builder += "0";
+			builder += Minute.ToString();
+
+			builder += ":";
+			if(Second < 10) builder += "0";
+			builder += Second.ToString();
+
+			return builder;
+		}
 	}
 }

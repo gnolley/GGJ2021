@@ -9,7 +9,7 @@ namespace GameSystem.WorkTime.UI {
 		[SerializeField] private TextMeshProUGUI timeText;
 
 		public void SetWorkTime(TimeInfo info) {
-			timeText.text = $"{info.Hour}:{info.Minute}";
+			timeText.text = info.ToString();
 		}
 
 	}
