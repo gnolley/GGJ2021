@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace SignalSystem {
 
@@ -6,6 +7,10 @@ namespace SignalSystem {
 	///
 	/// </summary>
 	public class SignalFinder : MonoBehaviour {
+
+		[SerializeField] private SignalManager manager;
+
+		[SerializeField] private Text signalPos;
 
 		private Vector3 result = new Vector3();
 
@@ -20,11 +25,11 @@ namespace SignalSystem {
 				Input.gyro.enabled = true;
 			}
 
-			SignalManager.Instance.NewSignalChosenEvent?.AddListener(OnNewSignalChosen);
+			manager.NewSignalChosenEvent?.AddListener(OnNewSignalChosen);
 		}
 
 		private void OnDestroy() {
-			SignalManager.Instance.NewSignalChosenEvent?.RemoveListener(OnNewSignalChosen);
+			manager.NewSignalChosenEvent?.RemoveListener(OnNewSignalChosen);
 		}
 
 		private void Update() {
@@ -38,7 +43,9 @@ namespace SignalSystem {
 
 			// Move object
 			finderPosition = Vector3.Lerp(finderPosition, result, 0.3f);
-			SignalManager.Instance.UpdateSignal(finderPosition);
+			manager.UpdateSignal(finderPosition);
+
+			signalPos.text = $"{manager.CurrentSignalPosition} | {finderPosition}";
 		}
 
 		private void OnNewSignalChosen(Vector2 signalPosition) {

@@ -22,11 +22,11 @@ namespace SignalSystem {
 			if (SystemInfo.supportsGyroscope) {
 				Input.gyro.enabled = true;
 			}
-			SignalManager.Instance.NewSignalChosenEvent?.AddListener(OnNewSignalChosen);
+			//SignalManager.Instance.NewSignalChosenEvent?.AddListener(OnNewSignalChosen);
 		}
 
 		private void OnDestroy() {
-			SignalManager.Instance.NewSignalChosenEvent?.RemoveListener(OnNewSignalChosen);
+			//SignalManager.Instance.NewSignalChosenEvent?.RemoveListener(OnNewSignalChosen);
 		}
 
 		private void Update() {
@@ -47,8 +47,8 @@ namespace SignalSystem {
 
 			//SignalManager.Instance.UpdateSignal(transform.position);
 
-			strengthText.text = SignalManager.Instance.CurrentSignalStrength.ToString();
-			posText.text = SignalManager.Instance.CurrentSignalPosition.ToString();
+			//strengthText.text = SignalManager.Instance.CurrentSignalStrength.ToString();
+			//posText.text = SignalManager.Instance.CurrentSignalPosition.ToString();
 
 			gravityText.text = $"grav: {Input.gyro.gravity}";
 		}
