@@ -503,6 +503,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 640201231185707415, guid: f5d463d9ad5482343b68008d9ec38ebb, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 640201231185707415, guid: f5d463d9ad5482343b68008d9ec38ebb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 827405215866393370, guid: f5d463d9ad5482343b68008d9ec38ebb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -647,6 +655,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8315977974060944866, guid: f5d463d9ad5482343b68008d9ec38ebb, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315977974060944866, guid: f5d463d9ad5482343b68008d9ec38ebb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315977974060944866, guid: f5d463d9ad5482343b68008d9ec38ebb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8434701756290114015, guid: f5d463d9ad5482343b68008d9ec38ebb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -771,7 +791,7 @@ MonoBehaviour:
   inquiryCorrect: 25
   inquiryIncorrect: 5
   view: {fileID: 981430857}
-  KPIDrainRate: 1.8
+  KPIDrainRate: 1.6
 --- !u!4 &345331104
 Transform:
   m_ObjectHideFlags: 0
