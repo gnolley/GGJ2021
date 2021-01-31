@@ -57,6 +57,7 @@ namespace EmailSystem {
 		public void TrashEmail(Email email) {
 			EmailNotificationView toDestroy = (EmailViews.Find((EmailNotificationView view) => view.GetAssociatedEmail() == email));
 			if (toDestroy != null) {
+				EmailViews.Remove(toDestroy);
 				Destroy(toDestroy.gameObject);
 			}
 		}
