@@ -13,13 +13,21 @@ namespace EmailSystem.UI {
 
 		Email associatedEmail;
 		Action<Email> onPressCallback;
+		Action<Email> onTrashCallback;
 
-		public void Populate(Email email, Action<Email> onPressCallback) {
+		public void Populate(Email email, Action<Email> onPressCallback, Action<Email> onTrashCallback) {
 			title.text = email.Title;
 			subject.text = email.Subject;
 			portait.sprite = email.Author.Portrait;
 			associatedEmail = email;
 			this.onPressCallback = onPressCallback;
+			this.onTrashCallback = onTrashCallback;
+		}
+
+		public Email GetAssociatedEmail() => associatedEmail;
+
+		public void DeleteNotification() {
+			Destroy(gameObject);
 		}
 
 		private void OnEnable() {
@@ -36,6 +44,10 @@ namespace EmailSystem.UI {
 
 		public void OnPress() {
 			if(onPressCallback != null) onPressCallback.Invoke(associatedEmail);
+		}
+
+		public void OnTrashPress() {
+			if(onTrashCallback != null) onTrashCallback.Invoke(associatedEmail);
 		}
 	}
 }

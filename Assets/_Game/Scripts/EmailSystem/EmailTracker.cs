@@ -13,7 +13,11 @@ namespace EmailSystem {
 		[SerializeField] private GameObject emailEntryPrefab;
 		[SerializeField] private RectTransform spawnTransform;
 
+		//[SerializeField] private float popInfoEvery = 10;
+
 		protected List<Email> EmailList = new List<Email>();
+		protected List<Email> DetachedEmails = new List<Email>();
+		protected List<EmailNotificationView> EmailViews = new List<EmailNotificationView>();
 		
 		private Email currentEmail;
 		public Email CurrentEmail {
@@ -24,15 +28,17 @@ namespace EmailSystem {
 			set => currentEmail = value;
 		}
 
-		public void AddEmail(Email email, Action<Email> onPressCallback) {
+		public void AddEmail(Email email, Action<Email> onPressCallback, Action<Email> onTrashCallback) {
 			EmailList.Add(email);
 			EmailNotificationView view = Instantiate(emailEntryPrefab, spawnTransform).GetComponent<EmailNotificationView>();
-			view.Populate(email, onPressCallback);
+			EmailViews.Add(view);
+			view.Populate(email, onPressCallback, onTrashCallback);
 		}
 
 		public int InfoEmailCount => EmailList.Where((x) => x.EmailType == EmailType.Info).Count();
 		public int InquiryEmailCount => EmailList.Where((x) => x.EmailType == EmailType.Inquiry).Count();
 		public int TotalEmailCount => EmailList.Count;
+		public int GetTotalEmailViewCount => EmailViews.Count;
 
 		/// <summary>
 		/// Gets a random email in the list of emails that is an info email
@@ -48,8 +54,25 @@ namespace EmailSystem {
 			return emails.ElementAt(randomEmail) as InfoEmail;
 		}
 
-		public void RemoveEmail(Email email) {
+		public void TrashEmail(Email email) {
+			EmailNotificationView toDestroy = (EmailViews.Find((EmailNotificationView view) => view.GetAssociatedEmail() == email));
+			if (toDestroy != null) {
+				Destroy(toDestroy.gameObject);
+			}
+		}
+
+		public void UntrackEmail(Email email) {
 			EmailList.Remove(email);
+		}
+
+		public void DeleteEmail(Email email) {
+			TrashEmail(email);
+			EmailList.Remove(email);
+		}
+
+		private void PopEmail() {
+			Email infoEmail = EmailList.First((Email email) => email.EmailType == EmailType.Info);
+			EmailList.Remove(infoEmail);
 		}
 	}
 }

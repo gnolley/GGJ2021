@@ -21,6 +21,7 @@ namespace ScoreSystem {
 
 		[SerializeField] private float infoCorrect = 10f, inquiryCorrect = 25f, inquiryIncorrect = 5f;
 		[SerializeField] private KPIView view;
+		[SerializeField] private float KPIDrainRate = 2f;
 
 		const float MAX_KPI = 100f;
 
@@ -31,13 +32,17 @@ namespace ScoreSystem {
 		public float KPI { 
 			get => kpi;
 			private set {
-				kpi = Mathf.Clamp(kpi + value, 0f, MAX_KPI);
-				view.SetKPI(Mathf.Round(kpi / MAX_KPI));
+				kpi = Mathf.Clamp(value, 0f, MAX_KPI);
+				view.SetKPI(kpi / MAX_KPI);
 			}
 		}
 
 		private void Start() {
 			KPI = MAX_KPI;
+		}
+
+		private void Update() {
+			KPI -= KPIDrainRate * Time.deltaTime;
 		}
 
 		public void AddCorrectInfoResponse() => KPI += infoCorrect;

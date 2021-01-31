@@ -46,7 +46,7 @@ namespace EmailSystem {
 		}
 
 		public void SpawnRandomEmail() {
-			if(emailTracker.TotalEmailCount >= maxEmails) return;
+			if(emailTracker.GetTotalEmailViewCount >= maxEmails) return;
 
 			float spam = UnityEngine.Random.Range(0f, 1f);
 			if(spam <= spamEmailChance) {
@@ -70,10 +70,13 @@ namespace EmailSystem {
 		}
 
 				
-		private void AddNewInfoEmail() => emailTracker.AddEmail(emailGenerator.GenerateInfoEmail(), OnEmailPress);
-		private void AddNewInquiryEmail(InfoEmail basedOn) => emailTracker.AddEmail(emailGenerator.GenerateInquiryEmail(basedOn.AssociatedInfo), OnEmailPress);
-		private void AddNewSpamEmail() => emailTracker.AddEmail(emailGenerator.GenerateSpamEmail(), OnEmailPress);
-		private void AddNewResponseEmail(Email basedOn) => emailTracker.AddEmail(emailGenerator.GenerateResponseEmail(basedOn), OnEmailPress);
+		private void AddNewInfoEmail() => emailTracker.AddEmail(emailGenerator.GenerateInfoEmail(), OnEmailPress, OnTrashPress);
+		private void AddNewInquiryEmail(InfoEmail basedOn) {
+			emailTracker.AddEmail(emailGenerator.GenerateInquiryEmail(basedOn.AssociatedInfo), OnEmailPress, OnTrashPress);
+			emailTracker.UntrackEmail(basedOn);
+		}
+		private void AddNewSpamEmail() => emailTracker.AddEmail(emailGenerator.GenerateSpamEmail(), OnEmailPress, OnTrashPress);
+		private void AddNewResponseEmail(Email basedOn) => emailTracker.AddEmail(emailGenerator.GenerateResponseEmail(basedOn), OnEmailPress, OnTrashPress);
 
 
 		public void OnEmailPress(Email email) {
@@ -142,7 +145,7 @@ namespace EmailSystem {
 		}
 
 		public void OnTrashPress(Email email) {
-			emailTracker.RemoveEmail(email);
+			emailTracker.TrashEmail(email);
 		}
 
 		public void OnResponseSent(EmailInfo info) {

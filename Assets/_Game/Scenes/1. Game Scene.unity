@@ -1490,6 +1490,7 @@ MonoBehaviour:
   inquiryCorrect: 25
   inquiryIncorrect: 5
   view: {fileID: 981430857}
+  KPIDrainRate: 1.5
 --- !u!4 &345331104
 Transform:
   m_ObjectHideFlags: 0
