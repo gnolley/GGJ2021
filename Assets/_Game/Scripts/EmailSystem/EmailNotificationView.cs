@@ -16,7 +16,7 @@ namespace EmailSystem.UI {
 		Action<Email> onTrashCallback;
 
 		public void Populate(Email email, Action<Email> onPressCallback, Action<Email> onTrashCallback) {
-			title.text = email.Title;
+			title.text = email.Author.Name;
 			subject.text = email.Subject;
 			portait.sprite = email.Author.Portrait;
 			associatedEmail = email;

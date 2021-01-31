@@ -14,11 +14,9 @@ namespace EmailSystem {
 
 
 		public InfoEmail(Author author,
-				string title,
 				string subject,
 				string bodyText,
 				EmailInfo emailInfo) : base(author,
-							title,
 							subject,
 							bodyText,
 							EmailType.Info) {

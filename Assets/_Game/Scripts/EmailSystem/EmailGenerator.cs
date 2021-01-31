@@ -1,25 +1,29 @@
-﻿using UnityEngine;
+﻿using EmailSystem.Content;
+using UnityEngine;
 
 namespace EmailSystem {
 
 	public class EmailGenerator : MonoBehaviour {
 
 		[SerializeField] private Sprite defaultPortrait;
+		[SerializeField] private SpamEmailContent spamEmailContent;
+
 		private void Awake() {
 			DEFAULT_AUTHOR = new Author(defaultPortrait, "Jane Doe", "123Evergreen@Terrace.com");
+			spamEmailContent.Populate();
 		}
 
 		public Email GenerateInfoEmail() { 
-			return new InfoEmail(DEFAULT_AUTHOR, "Info Email", "Some more Info", DEFAULT_BODY, new EmailInfo("10:30")); 
+			return new InfoEmail(DEFAULT_AUTHOR, "Info Email", DEFAULT_BODY, new EmailInfo("10:30")); 
 		}
 		public Email GenerateInquiryEmail(EmailInfo basedOn) {
-			return new InquiryEmail(DEFAULT_AUTHOR, "Inquiry Email", "Some Inquiry Please", DEFAULT_BODY, basedOn);
+			return new InquiryEmail(DEFAULT_AUTHOR, "Inquiry Email", DEFAULT_BODY, basedOn);
 		}
 		public Email GenerateResponseEmail(Email basedOn) {
-			return new ResponseEmail(DEFAULT_AUTHOR, "Response Email", "You Suck!", DEFAULT_BODY, basedOn);
+			return new ResponseEmail(DEFAULT_AUTHOR, "You Suck!", DEFAULT_BODY, basedOn);
 		}
 		public Email GenerateSpamEmail() {
-			return new SpamEmail(DEFAULT_AUTHOR, "Spam Email", "Give me MoneY!", DEFAULT_BODY);
+			return spamEmailContent.GetRandomContent();
 		}
 
 

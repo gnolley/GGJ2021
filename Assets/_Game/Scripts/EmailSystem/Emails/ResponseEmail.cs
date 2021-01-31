@@ -13,11 +13,9 @@ namespace EmailSystem {
 
 
 		public ResponseEmail(Author author,
-				string title,
 				string subject,
 				string bodyText,
 				Email incorrentResponse) : base(author,
-							title,
 							subject,
 							bodyText,
 							EmailType.Response) {
