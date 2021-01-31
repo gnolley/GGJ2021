@@ -2,11 +2,14 @@
 using ScoreSystem.UI;
 
 namespace ScoreSystem {
+
 	/// <summary>
 	///
 	/// </summary>
 	public class KPIManager : MonoBehaviour {
+
 		#region Singleton
+
 		public static KPIManager instance;
 
 		private void Awake() {
@@ -17,19 +20,21 @@ namespace ScoreSystem {
 				Destroy(this);
 			}
 		}
+
 		#endregion Singleton
 
 		[SerializeField] private float infoCorrect = 10f, inquiryCorrect = 25f, inquiryIncorrect = 5f;
 		[SerializeField] private KPIView view;
 		[SerializeField] private float KPIDrainRate = 2f;
 
-		const float MAX_KPI = 100f;
+		public const float MAX_KPI = 100f;
 
-		float kpi = 0f;
+		private float kpi = 0f;
+
 		/// <summary>
 		/// Key performance indicator [0,100?]
 		/// </summary>
-		public float KPI { 
+		public float KPI {
 			get => kpi;
 			private set {
 				kpi = Mathf.Clamp(value, 0f, MAX_KPI);
@@ -46,7 +51,9 @@ namespace ScoreSystem {
 		}
 
 		public void AddCorrectInfoResponse() => KPI += infoCorrect;
+
 		public void AddCorrentInquiryResponse() => KPI += inquiryCorrect;
+
 		public void AddIncorrectInquiryResponse() => KPI -= inquiryIncorrect;
 	}
 }
