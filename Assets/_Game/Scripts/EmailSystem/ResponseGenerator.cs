@@ -4,19 +4,29 @@ using UnityEngine;
 
 namespace EmailSystem {
 	public class ResponseGenerator : MonoBehaviour {
+		[SerializeField] private InfoContent infoContent;
+
 		public EmailInfo GenerateInfoEmailResponse() {
-			return new EmailInfo("Info Response", EmailInfo.InfoTypeEnum.Place);
+			return infoContent.GetRandomInfoResponse();
 		}
 
-		public EmailInfo GenerateInquiryEmailResponse(EmailInfo.InfoTypeEnum type) { 
+		public EmailInfo GenerateInquiryEmailResponse(EmailInfo.InfoTypeEnum type) {
+			switch (type) {
+				case EmailInfo.InfoTypeEnum.Time:
+					return infoContent.GetRandomMeetingTimeInfo();
+				case EmailInfo.InfoTypeEnum.Place:
+					return infoContent.GetRandomMeetingPlaceInfo();
+				case EmailInfo.InfoTypeEnum.Report:
+					return infoContent.GetRandomReportInfo();
+			}
 			return new EmailInfo("Inquiry Response", type);
 		}
 
-		public EmailInfo GenerateSpamEmailResponse() { 
-			return new EmailInfo("Spam Response", EmailInfo.InfoTypeEnum.Place);
+		public EmailInfo GenerateSpamEmailResponse() {
+			return infoContent.GetRandomSpamResponse();
 		}
-		public EmailInfo GenerateResponseEmailResponse() { 
-			return new EmailInfo("Angry Response", EmailInfo.InfoTypeEnum.Place);
+		public EmailInfo GenerateResponseEmailResponse() {
+			return infoContent.GetRandomAngryResponse();
 		}
 	}
 }

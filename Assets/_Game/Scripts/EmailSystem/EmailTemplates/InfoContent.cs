@@ -46,6 +46,45 @@ namespace EmailSystem {
 			new EmailInfo("The Sadle Blaze", EmailInfo.InfoTypeEnum.Report)
 		};
 
+
+		private List<EmailInfo> infoResponses = new List<EmailInfo>() {
+			new EmailInfo("Got it", EmailInfo.InfoTypeEnum.Place),
+			new EmailInfo("Sure thing boss", EmailInfo.InfoTypeEnum.Place),
+			new EmailInfo("Alrighty", EmailInfo.InfoTypeEnum.Place),
+			new EmailInfo("Ain't that the truth", EmailInfo.InfoTypeEnum.Place),
+			new EmailInfo("Okay", EmailInfo.InfoTypeEnum.Place),
+			new EmailInfo("OK", EmailInfo.InfoTypeEnum.Place),
+			new EmailInfo("=)", EmailInfo.InfoTypeEnum.Place)
+		};
+		public EmailInfo GetRandomInfoResponse() {
+			return infoResponses[Random.Range(0, infoResponses.Count)];
+		}
+
+		private List<EmailInfo> spamResponses = new List<EmailInfo>() {
+			new EmailInfo("I'm in!", EmailInfo.InfoTypeEnum.Place),
+			new EmailInfo("That sounds great!", EmailInfo.InfoTypeEnum.Place),
+			new EmailInfo("How could that go wrong?", EmailInfo.InfoTypeEnum.Place),
+			new EmailInfo("Too easy", EmailInfo.InfoTypeEnum.Place),
+			new EmailInfo("Here we go", EmailInfo.InfoTypeEnum.Place),
+			new EmailInfo("Go away", EmailInfo.InfoTypeEnum.Place),
+		};
+		public EmailInfo GetRandomSpamResponse() {
+			return spamResponses[Random.Range(0, spamResponses.Count)];
+		}
+
+		private List<EmailInfo> angryResponses = new List<EmailInfo>() {
+			new EmailInfo("Calm down", EmailInfo.InfoTypeEnum.Place),
+			new EmailInfo("I tried!", EmailInfo.InfoTypeEnum.Place),
+			new EmailInfo("Get lost.", EmailInfo.InfoTypeEnum.Place),
+			new EmailInfo("Piss off.", EmailInfo.InfoTypeEnum.Place),
+			new EmailInfo("Thanks, I hate it.", EmailInfo.InfoTypeEnum.Place),
+			new EmailInfo("Try Again Later", EmailInfo.InfoTypeEnum.Place),
+		};
+		public EmailInfo GetRandomAngryResponse() {
+			return angryResponses[Random.Range(0, angryResponses.Count)];
+		}
+
+
 		public EmailInfo GetRandomMeetingTimeInfo() {
 			return MeetingTimeInfo[Random.Range(0, MeetingTimeInfo.Count)];
 		}

@@ -282,6 +282,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da033f23ac27f3458a31fd97f2179c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &91113142 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1956320288977624030, guid: 1a54ca37fd5dd514caafa328e474f26f, type: 3}
+  m_PrefabInstance: {fileID: 91113137}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 226b4d81f814aa14ba590c4e5cb0b397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &140828494
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,7 +335,7 @@ MonoBehaviour:
   startingEmail: 3
   infoToInquryFactor: 0.75
   spamEmailChance: 0.2
-  newEmailEvery: 4
+  newEmailEvery: 6
   maxEmails: 10
 --- !u!4 &140828496
 Transform:
@@ -371,6 +382,7 @@ MonoBehaviour:
   infoEmailContent: {fileID: 91113140}
   inquiryEmailContent: {fileID: 91113139}
   responseEmailContent: {fileID: 91113138}
+  authorContent: {fileID: 91113142}
 --- !u!114 &140828499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,6 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f735a5dc375330749bc55e244939cf31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoContent: {fileID: 589688059}
 --- !u!114 &140828500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1694,7 +1707,7 @@ MonoBehaviour:
   inquiryCorrect: 25
   inquiryIncorrect: 5
   view: {fileID: 981430857}
-  KPIDrainRate: 1.5
+  KPIDrainRate: 0.8
 --- !u!4 &345331104
 Transform:
   m_ObjectHideFlags: 0
@@ -1709,6 +1722,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &589688059 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2999672449551074066, guid: 1a54ca37fd5dd514caafa328e474f26f, type: 3}
+  m_PrefabInstance: {fileID: 91113137}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2f280d2fbb69e4e8a2181a61b02ebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &632907416
 GameObject:
   m_ObjectHideFlags: 0
@@ -1890,7 +1914,7 @@ MonoBehaviour:
   view: {fileID: 2122488728}
   startTime: 9
   endTime: 17
-  runTime: 4
+  runTime: 60
   OnDayFinish:
     m_PersistentCalls:
       m_Calls:
