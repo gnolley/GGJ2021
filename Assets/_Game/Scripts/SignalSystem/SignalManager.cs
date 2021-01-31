@@ -15,7 +15,12 @@ namespace SignalSystem {
 
 		[SerializeField] private SignalView view;
 
-		public float EvaluatedSignalStrength => SignalStrength;
+		public float EvaluatedSignalStrength { 
+			get {
+				if (!Application.isEditor) return SignalStrength;
+				else return 1f;
+			}
+		}
 
 		/// <summary>
 		/// The current signal strength [0,1]

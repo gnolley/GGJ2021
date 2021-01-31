@@ -181,7 +181,107 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 27721125}
-  signalPos: {fileID: 0}
+--- !u!1001 &91113137
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5308685758953411233, guid: 1a54ca37fd5dd514caafa328e474f26f, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5308685758953411233, guid: 1a54ca37fd5dd514caafa328e474f26f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 128.39302
+      objectReference: {fileID: 0}
+    - target: {fileID: 5308685758953411233, guid: 1a54ca37fd5dd514caafa328e474f26f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1029.178
+      objectReference: {fileID: 0}
+    - target: {fileID: 5308685758953411233, guid: 1a54ca37fd5dd514caafa328e474f26f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7338.6255
+      objectReference: {fileID: 0}
+    - target: {fileID: 5308685758953411233, guid: 1a54ca37fd5dd514caafa328e474f26f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5308685758953411233, guid: 1a54ca37fd5dd514caafa328e474f26f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5308685758953411233, guid: 1a54ca37fd5dd514caafa328e474f26f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5308685758953411233, guid: 1a54ca37fd5dd514caafa328e474f26f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5308685758953411233, guid: 1a54ca37fd5dd514caafa328e474f26f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5308685758953411233, guid: 1a54ca37fd5dd514caafa328e474f26f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5308685758953411233, guid: 1a54ca37fd5dd514caafa328e474f26f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6319297237679163117, guid: 1a54ca37fd5dd514caafa328e474f26f, type: 3}
+      propertyPath: m_Name
+      value: EmailContent
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1a54ca37fd5dd514caafa328e474f26f, type: 3}
+--- !u!114 &91113138 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2000841811223016250, guid: 1a54ca37fd5dd514caafa328e474f26f, type: 3}
+  m_PrefabInstance: {fileID: 91113137}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abfb79e6fc3921741a4e0110815d80d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &91113139 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4131737856141973757, guid: 1a54ca37fd5dd514caafa328e474f26f, type: 3}
+  m_PrefabInstance: {fileID: 91113137}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 416a80fd155848248ae413418891daed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &91113140 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2568092529938376439, guid: 1a54ca37fd5dd514caafa328e474f26f, type: 3}
+  m_PrefabInstance: {fileID: 91113137}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 310b76322617ddf4184b37bf773c31e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &91113141 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5202061029942024775, guid: 1a54ca37fd5dd514caafa328e474f26f, type: 3}
+  m_PrefabInstance: {fileID: 91113137}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da033f23ac27f3458a31fd97f2179c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &140828494
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,6 +367,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultPortrait: {fileID: 21300000, guid: 1595746eb0a5e3049b75c95f424dcded, type: 3}
+  spamEmailContent: {fileID: 91113141}
+  infoEmailContent: {fileID: 91113140}
+  inquiryEmailContent: {fileID: 91113139}
+  responseEmailContent: {fileID: 91113138}
 --- !u!114 &140828499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1546,6 +1650,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fef23db2411fbe449fef9d86fc0ecce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &333627359 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 237234969553879644, guid: f5d463d9ad5482343b68008d9ec38ebb, type: 3}
+  m_PrefabInstance: {fileID: 333627354}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e04a7ebf15c10141864a665353229bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &345331102
 GameObject:
   m_ObjectHideFlags: 0
@@ -1775,10 +1890,34 @@ MonoBehaviour:
   view: {fileID: 2122488728}
   startTime: 9
   endTime: 17
-  runTime: 60
+  runTime: 4
   OnDayFinish:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 140828495}
+        m_TargetAssemblyTypeName: EmailSystem.EmailController, Assembly-CSharp
+        m_MethodName: StopTicker
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 333627359}
+        m_TargetAssemblyTypeName: GameOverScreen, Assembly-CSharp
+        m_MethodName: GameOver
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1802006135
 Transform:
   m_ObjectHideFlags: 0
