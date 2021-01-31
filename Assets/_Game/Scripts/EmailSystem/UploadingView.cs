@@ -15,6 +15,7 @@ namespace EmailSystem.UI {
 			loadingIcon.rotation *= Quaternion.Euler(0f, 0f, loadingIconSpeed * Time.deltaTime);
 		}
 
+
 		public void StartLoading() {
 			gameObject.SetActive(true);
 			StopCoroutine(nameof(FadeOut));
