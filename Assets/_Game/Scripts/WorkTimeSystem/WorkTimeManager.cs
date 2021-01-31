@@ -80,10 +80,6 @@ namespace GameSystem.WorkTime {
 			if(Minute < 10) builder += "0";
 			builder += Minute.ToString();
 
-			builder += ":";
-			if(Second < 10) builder += "0";
-			builder += Second.ToString();
-
 			return builder;
 		}
 	}

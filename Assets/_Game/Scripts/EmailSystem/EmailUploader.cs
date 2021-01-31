@@ -33,7 +33,7 @@ namespace EmailSystem {
 		private IEnumerator UploadRoutine() {
 			float uploadStatus = 0;
 			while (uploadStatus < uploadRequirement) {
-				uploadStatus += SignalManager.Instance.CurrentSignal * Time.deltaTime;
+				uploadStatus += SignalManager.Instance.CurrentSignalStrength * Time.deltaTime;
 				UploadProgress = uploadStatus / uploadRequirement;
 				uploadingView.UpdateLoadingProgress(UploadProgress);
 				yield return null;
