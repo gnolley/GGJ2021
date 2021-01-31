@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+using NaughtyAttributes;
 
 namespace ScoreSystem {
 
@@ -10,6 +12,7 @@ namespace ScoreSystem {
 
 		[SerializeField] private TextMeshProUGUI KPIScoreText;
 		[SerializeField] private TextMeshProUGUI RatingText;
+		[SerializeField, Scene] private string gameScene;
 
 		private void Start() {
 			DisplayScore();
@@ -20,5 +23,8 @@ namespace ScoreSystem {
 			RatingText.text = RatingFunction.Evaluate(KPIManager.instance.KPI);
 		}
 
+		public void OnPlayAgainButton() {
+			SceneManager.LoadScene(gameScene);
+		}
 	}
 }
