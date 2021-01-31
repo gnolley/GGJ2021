@@ -2,6 +2,7 @@
 using SignalSystem;
 using EmailSystem.UI;
 using System.Collections;
+using UnityEngine.Events;
 
 namespace EmailSystem {
 
@@ -16,6 +17,8 @@ namespace EmailSystem {
 		private EmailInfo uploading;
 
 		private SignalManager signalManager;
+
+		[SerializeField] private UnityEvent OnStartUploadingEvent = new UnityEvent();
 
 		private SignalManager SignalManager {
 			get {
@@ -35,6 +38,7 @@ namespace EmailSystem {
 
 		private void StartUpload() {
 			uploadingView.StartLoading();
+			OnStartUploadingEvent?.Invoke();
 			StopCoroutine(nameof(UploadRoutine));
 			StartCoroutine(nameof(UploadRoutine));
 		}
@@ -47,7 +51,7 @@ namespace EmailSystem {
 		private IEnumerator UploadRoutine() {
 			float uploadStatus = 0;
 			while (uploadStatus < uploadRequirement) {
-				uploadStatus += SignalManager.EvaluatedSignalStrength * Time.deltaTime;
+				uploadStatus += SignalManager.EvaluatedSignalStrength * SignalManager.EvaluatedSignalStrength * Time.deltaTime;
 				UploadProgress = uploadStatus / uploadRequirement;
 				uploadingView.UpdateLoadingProgress(UploadProgress);
 				yield return null;

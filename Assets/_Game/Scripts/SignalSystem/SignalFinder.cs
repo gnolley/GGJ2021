@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 namespace SignalSystem {
 
@@ -9,8 +8,6 @@ namespace SignalSystem {
 	public class SignalFinder : MonoBehaviour {
 
 		[SerializeField] private SignalManager manager;
-
-		[SerializeField] private Text signalPos;
 
 		private Vector3 result = new Vector3();
 
@@ -44,8 +41,6 @@ namespace SignalSystem {
 			// Move object
 			finderPosition = Vector3.Lerp(finderPosition, result, 0.3f);
 			manager.UpdateSignal(finderPosition);
-
-			signalPos.text = $"{manager.CurrentSignalPosition} | {finderPosition}";
 		}
 
 		private void OnNewSignalChosen(Vector2 signalPosition) {

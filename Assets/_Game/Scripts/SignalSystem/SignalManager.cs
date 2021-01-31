@@ -8,10 +8,10 @@ namespace SignalSystem {
 	/// </summary>
 	public class SignalManager : MonoBehaviour {
 
-		private const float Y_THRESHOLD = 0.12f;
+		private const float Y_THRESHOLD = 0.05f;
 		private readonly Vector2 ROLL_RANGE = new Vector2(-0.4f, 0.4f);
 
-		private const float MAX_DISTANCE_THRESHOLD = 0.3f;
+		private const float MAX_DISTANCE_THRESHOLD = 0.2f;
 
 		[SerializeField] private SignalView view;
 
@@ -49,9 +49,7 @@ namespace SignalSystem {
 			// check against current position
 			SignalStrength = yStrength * xStrength;
 
-			view.SetSignalLevel((int)((EvaluatedSignalStrength + 0.5f) * 3));
-
-			if (SignalStrength >= 0.9f) ChooseNewSignalPosition();
+			view.SetSignalLevel((int)(EvaluatedSignalStrength * 3 + 0.5f));
 		}
 
 		private void ChooseNewSignalPosition() {
@@ -63,5 +61,8 @@ namespace SignalSystem {
 			NewSignalChosenEvent?.Invoke(CurrentSignalPosition);
 		}
 
+		public void OnStartUploadingHandler() {
+			ChooseNewSignalPosition();
+		}
 	}
 }
