@@ -27,6 +27,7 @@ namespace EmailSystem {
 		}
 		private void FinishUploading() {
 			uploadingView.EndLoading();
+			emailController.OnResponseSent(uploading);
 		}
 
 		private IEnumerator UploadRoutine() {

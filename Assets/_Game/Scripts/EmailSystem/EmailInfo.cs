@@ -27,13 +27,11 @@ namespace EmailSystem {
 		}
 
 		public override bool Equals(object obj) {
-			if (!(obj is string)) {
-				Debug.LogException(new ArgumentException($"Cannot compare EmailInfo to {obj.GetType().ToString()}"));
-				return false;
-			}
-			else {
-				return infoText.Equals(obj as string);
-			}
+			if(obj is string) return infoText.Equals(obj as string);
+			else if(obj is EmailInfo) return infoText.Equals((obj as EmailInfo).infoText);
+
+			Debug.LogException(new ArgumentException($"Cannot compare EmailInfo to {obj.GetType().ToString()}"));
+			return false;
 		}
 	}
 }

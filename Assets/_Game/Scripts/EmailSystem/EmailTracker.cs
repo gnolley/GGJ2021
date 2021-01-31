@@ -14,13 +14,14 @@ namespace EmailSystem {
 		[SerializeField] private RectTransform spawnTransform;
 
 		protected List<Email> EmailList = new List<Email>();
-		int currentEmail = 0;
-
+		
+		private Email currentEmail;
 		public Email CurrentEmail {
 			get {
-				if (currentEmail < EmailList.Count && currentEmail > 0) return EmailList[currentEmail];
-				else throw new ArgumentException("Current Email invalid");
+				if (currentEmail != null) return currentEmail;
+				else throw new NullReferenceException("No current email set");
 			}
+			set => currentEmail = value;
 		}
 
 		public void AddEmail(Email email, Action<Email> onPressCallback) {

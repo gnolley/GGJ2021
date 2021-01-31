@@ -2,6 +2,7 @@
 using EmailSystem.UI;
 using System.Collections;
 using System.Collections.Generic;
+using ScoreSystem;
 
 namespace EmailSystem {
 
@@ -72,10 +73,13 @@ namespace EmailSystem {
 		private void AddNewInfoEmail() => emailTracker.AddEmail(emailGenerator.GenerateInfoEmail(), OnEmailPress);
 		private void AddNewInquiryEmail(InfoEmail basedOn) => emailTracker.AddEmail(emailGenerator.GenerateInquiryEmail(basedOn.AssociatedInfo), OnEmailPress);
 		private void AddNewSpamEmail() => emailTracker.AddEmail(emailGenerator.GenerateSpamEmail(), OnEmailPress);
+		private void AddNewResponseEmail(Email basedOn) => emailTracker.AddEmail(emailGenerator.GenerateResponseEmail(basedOn), OnEmailPress);
+
 
 		public void OnEmailPress(Email email) {
 			emailContentView.SetContents(email);
 			GenerateResponses(email);
+			emailTracker.CurrentEmail = email;
 			uIScreenManager.GoToScreen(UIScreenManager.UIScreens.EmailScreen);
 			email.IsEmailRead = true;
 		}
@@ -92,10 +96,10 @@ namespace EmailSystem {
 					if(email is InquiryEmail) info = GenerateInquiryResponses(email as InquiryEmail);
 					break;
 				case EmailType.Response:
-					if(email is SpamEmail) info = GenerateSpamResponses(email as SpamEmail);
+					if(email is ResponseEmail) info = GenerateResponseResponses(email as ResponseEmail);
 					break;
 				case EmailType.Spam:
-					if(email is ResponseEmail) info = GenerateResponseResponses(email as ResponseEmail);
+					if(email is SpamEmail) info = GenerateSpamResponses(email as SpamEmail);
 					break;
 			}
 
@@ -142,7 +146,22 @@ namespace EmailSystem {
 		}
 
 		public void OnResponseSent(EmailInfo info) {
-			// TODO: Remember what this does
+			if (emailTracker.CurrentEmail.EmailType == EmailType.Inquiry) {
+				if ((emailTracker.CurrentEmail as InquiryEmail).InfoToAquire.Equals(info)) OnCorrectInquiryResponse(); 
+				else OnIncorrectResponse(emailTracker.CurrentEmail);
+			}
+			else if(emailTracker.CurrentEmail.EmailType == EmailType.Info) {
+				OnCorrectInfoResponse();
+			}
+
+			uIScreenManager.GoToScreen(UIScreenManager.UIScreens.ListScreen);
+		}
+
+		public void OnCorrectInfoResponse() => KPIManager.instance.AddCorrectInfoResponse();
+		public void OnCorrectInquiryResponse() => KPIManager.instance.AddCorrentInquiryResponse();
+		public void OnIncorrectResponse(Email incorrectEmail) {
+			KPIManager.instance.AddIncorrectInquiryResponse();
+			AddNewResponseEmail(incorrectEmail);
 		}
 	}
 }
