@@ -8,15 +8,14 @@ namespace SignalSystem {
 	/// </summary>
 	public class SignalFinder : MonoBehaviour {
 
-        [SerializeField] private Text accelText;
-        [SerializeField] private Text strengthText;
-        [SerializeField] private Text posText;
-        [SerializeField] private Text resultText;
-
 		public bool GyroAvailable { get; private set; }
 
 		private void Awake() {
 			GyroAvailable = SystemInfo.supportsAccelerometer;
+
+			if (SystemInfo.supportsGyroscope) {
+				Input.gyro.enabled = true;
+			}
 
 			// check gyro
 			// check system
@@ -28,28 +27,17 @@ namespace SignalSystem {
 			// update manager
 
 			Vector3 dir = Input.acceleration;
-
-			// clamp acceleration vector to unit sphere
-			//if (dir.sqrMagnitude > 1)
-			//	dir.Normalize();
-
-			accelText.text = $"a: {dir.ToString()}";
+			Vector3 gravity = Input.gyro.gravity;
 
 			Vector3 result = new Vector3();
 			result.x = dir.x;
-			result.y = dir.z;
-
-			resultText.text = $"r: {result.ToString()}";
-
-			SignalManager.Instance.UpdateSignal(result);
+			result.y += (dir - gravity).y;
+			result.z = 0;
 
 			// Move object
-			transform.position = result * 3;
+			transform.position = Vector3.Lerp(transform.position, result, 0.3f);
 
-
-
-			strengthText.text = SignalManager.Instance.CurrentSignalStrength.ToString();
-			posText.text = SignalManager.Instance.CurrentSignalPosition.ToString();
+			SignalManager.Instance.UpdateSignal(transform.position);
 		}
 	}
 }
