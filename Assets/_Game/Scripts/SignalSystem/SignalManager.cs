@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace SignalSystem {
 
@@ -34,10 +35,10 @@ namespace SignalSystem {
 
 		#endregion Singleton
 
-		private readonly Vector2 ROLL_RANGE = new Vector2(-0.3f, 0.3f);
-		private readonly Vector2 PITCH_RANGE = new Vector2(0, 0.3f);
+		private const float Y_THRESHOLD = 0.12f;
+		private readonly Vector2 ROLL_RANGE = new Vector2(-0.4f, 0.4f);
 
-		private const float DISTANCE_THRESHOLD = 0.13f;
+		private const float MAX_DISTANCE_THRESHOLD = 0.25f;
 
 		/// <summary>
 		/// The current signal strength [0,1]
@@ -46,18 +47,14 @@ namespace SignalSystem {
 
 		public Vector2 CurrentSignalPosition { get; private set; }
 
-		private Transform cube;
+		public readonly ReturnEvent<Vector2> NewSignalChosenEvent = new ReturnEvent<Vector2>();
 
-		// when to shift signal
-		// bounds
-		// relative position
-
-		private void Awake() {
-			GameObject newObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
-			newObject.GetComponent<Collider>().enabled = false;
-			cube = newObject.transform;
-
+		private void Start() {
 			ChooseNewSignalPosition();
+		}
+
+		private void OnDestroy() {
+			NewSignalChosenEvent?.RemoveAllListeners();
 		}
 
 		public void Reset() {
@@ -65,21 +62,24 @@ namespace SignalSystem {
 		}
 
 		public void UpdateSignal(Vector2 finderPosition) {
+			float yStrength = Mathf.InverseLerp(0, Y_THRESHOLD, finderPosition.y);
+
+			float xDistance = Mathf.Abs(CurrentSignalPosition.x - finderPosition.x);
+			float xStrength = Mathf.InverseLerp(MAX_DISTANCE_THRESHOLD, 0, xDistance);
 
 			// check against current position
-			CurrentSignalStrength = (CurrentSignalPosition - finderPosition).magnitude;
+			CurrentSignalStrength = yStrength * xStrength;
 
-			if (CurrentSignalStrength <= DISTANCE_THRESHOLD) ChooseNewSignalPosition();
+			if (CurrentSignalStrength >= 0.9f) ChooseNewSignalPosition();
 		}
 
 		private void ChooseNewSignalPosition() {
-			Vector2 newPos = new Vector2(
+			CurrentSignalPosition = new Vector2(
 				Random.Range(ROLL_RANGE.x, ROLL_RANGE.y),
-				Random.Range(PITCH_RANGE.x, PITCH_RANGE.y)
+				Y_THRESHOLD
 				);
 
-			CurrentSignalPosition = newPos;
-			cube.position = CurrentSignalPosition;
+			NewSignalChosenEvent?.Invoke(CurrentSignalPosition);
 		}
 
 	}
