@@ -2,6 +2,7 @@
 using UnityEngine;
 using GameSystem.WorkTime.UI;
 using UnityEngine.Events;
+using System.Collections;
 
 namespace GameSystem.WorkTime {
 
@@ -13,7 +14,7 @@ namespace GameSystem.WorkTime {
 		[SerializeField] private float workTime = 0;
 		[SerializeField] private WorkTimeView view;
 		[SerializeField] private float startTime = 9f, endTime = 17f, runTime = 60f;
-		[SerializeField] private UnityEvent OnDayFinish;
+		[SerializeField] private UnityEvent OnDayFinish = new UnityEvent();
 
 		private float END_WORK_TIME => hoursToSeconds(endTime);
 		private float START_WORK_TIME => hoursToSeconds(startTime);
@@ -40,14 +41,30 @@ namespace GameSystem.WorkTime {
 			CurrentHMS = GetHMS();
 
 			WorkStarted = true;
+			StopCoroutine(nameof(TimerLoop));
+			StartCoroutine(nameof(TimerLoop));
 		}
 
-		private void Update() {
+		IEnumerator TimerLoop() {
+			while (true) {
+				if (!WorkStarted) yield return null;
 
-			if (WorkStarted == false) return;
+				workTime += Time.deltaTime * TIME_SCALE;
+				CurrentHMS = GetHMS();
 
-			workTime += Time.deltaTime * TIME_SCALE;
-			CurrentHMS = GetHMS();
+				if(workTime >= END_WORK_TIME) {
+					EndDay();
+					workTime = END_WORK_TIME;
+					CurrentHMS = GetHMS();
+				}
+
+				yield return null;
+			}
+		}
+
+		private void EndDay() {
+			StopCoroutine(nameof(TimerLoop));
+			OnDayFinish.Invoke();
 		}
 
 		public TimeInfo GetHMS() {

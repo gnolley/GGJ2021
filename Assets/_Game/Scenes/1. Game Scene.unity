@@ -165,7 +165,7 @@ MonoBehaviour:
   startingEmail: 3
   infoToInquryFactor: 0.75
   spamEmailChance: 0.2
-  newEmailEvery: 10
+  newEmailEvery: 4
   maxEmails: 10
 --- !u!4 &140828496
 Transform:
@@ -1684,6 +1684,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   workTime: 0
   view: {fileID: 2122488728}
+  startTime: 9
+  endTime: 17
+  runTime: 60
+  OnDayFinish:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1802006135
 Transform:
   m_ObjectHideFlags: 0
