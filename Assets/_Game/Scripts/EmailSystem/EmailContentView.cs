@@ -14,6 +14,7 @@ namespace EmailSystem.UI {
 			emailAddress.text = email.Author.Address;
 			authorName.text = email.Author.Name;
 			body.text = email.BodyText;
+			authorPortrait.sprite = email.Author.Portrait;
 		}
 	}
 }

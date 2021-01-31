@@ -80,7 +80,7 @@ namespace EmailSystem {
 			emailTracker.UntrackEmail(basedOn);
 		}
 		private void AddNewSpamEmail() => emailTracker.AddEmail(emailGenerator.GenerateSpamEmail(), OnEmailPress, OnTrashPress);
-		private void AddNewResponseEmail(EmailInfo basedOn) => emailTracker.AddEmail(emailGenerator.GenerateResponseEmail(basedOn), OnEmailPress, OnTrashPress);
+		private void AddNewResponseEmail(EmailInfo basedOn, Author author) => emailTracker.AddEmail(emailGenerator.GenerateResponseEmail(basedOn, author), OnEmailPress, OnTrashPress);
 
 
 		public void OnEmailPress(Email email) {
@@ -155,7 +155,7 @@ namespace EmailSystem {
 		public void OnResponseSent(EmailInfo info) {
 			if (emailTracker.CurrentEmail.EmailType == EmailType.Inquiry) {
 				if ((emailTracker.CurrentEmail as InquiryEmail).InfoToAquire.Equals(info)) OnCorrectInquiryResponse(); 
-				else OnIncorrectResponse(info);
+				else OnIncorrectResponse(info, emailTracker.CurrentEmail.Author);
 			}
 			else if(emailTracker.CurrentEmail.EmailType == EmailType.Info) {
 				OnCorrectInfoResponse();
@@ -166,9 +166,9 @@ namespace EmailSystem {
 
 		public void OnCorrectInfoResponse() => KPIManager.instance.AddCorrectInfoResponse();
 		public void OnCorrectInquiryResponse() => KPIManager.instance.AddCorrentInquiryResponse();
-		public void OnIncorrectResponse(EmailInfo incorrectInfo) {
+		public void OnIncorrectResponse(EmailInfo incorrectInfo, Author author) {
 			KPIManager.instance.AddIncorrectInquiryResponse();
-			AddNewResponseEmail(incorrectInfo);
+			AddNewResponseEmail(incorrectInfo, author);
 		}
 	}
 }

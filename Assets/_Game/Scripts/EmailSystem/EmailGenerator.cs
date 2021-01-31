@@ -10,20 +10,22 @@ namespace EmailSystem {
 		[SerializeField] private InfoEmailContent infoEmailContent;
 		[SerializeField] private InquiryEmailContent inquiryEmailContent;
 		[SerializeField] private ResponseEmailContent responseEmailContent;
+		[SerializeField] private AuthorContent authorContent;
 
 		private void Awake() {
 			DEFAULT_AUTHOR = new Author(defaultPortrait, "Jane Doe", "123Evergreen@Terrace.com");
 			spamEmailContent.Populate();
+			authorContent.Populate();
 		}
 
 		public Email GenerateInfoEmail() {
-			return infoEmailContent.GetRandomEmailFromAuthor(DEFAULT_AUTHOR);
+			return infoEmailContent.GetRandomEmailFromAuthor(authorContent.GetRandomAuthor());
 		}
 		public Email GenerateInquiryEmail(InfoEmail basedOn) {
-			return inquiryEmailContent.GetInquiryEmail(DEFAULT_AUTHOR, basedOn);
+			return inquiryEmailContent.GetInquiryEmail(authorContent.GetRandomAuthor(basedOn.Author), basedOn);
 		}
-		public Email GenerateResponseEmail(EmailInfo basedOn) {
-			return responseEmailContent.GetResponseEmail(DEFAULT_AUTHOR, basedOn);
+		public Email GenerateResponseEmail(EmailInfo basedOn, Author author) {
+			return responseEmailContent.GetResponseEmail(author, basedOn);
 		}
 		public Email GenerateSpamEmail() {
 			return spamEmailContent.GetRandomContent();
